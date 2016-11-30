@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "main": "./main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-packager ./ MusicPlayer --platform=win32 --out ~/Desktop/MusicPlayer --version 0.30.2 --overwrite --icon=./app/img/app-icon.ico"
   },
   "devDependencies": {
+    "electron-packager": "^8.3.0",
     "electron-prebuilt": "^1.4.10"
   },
   "dependencies": {

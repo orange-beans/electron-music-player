@@ -2,12 +2,17 @@
 
 'use strict';
 const electron = require('electron');
-const ipcRenderer = electron.ipcRenderer;
+const { ipcRenderer, remote } = electron;
+const { Menu, Tray } = remote;
+const path = require('path');
 
 // DOM elements
 const soundButtons = document.querySelectorAll('.button-sound');
 const closeEl = document.querySelector('.close');
 const settingEl = document.querySelector('.settings');
+
+let trayIcon = null;
+let trayMenu = null;
 
 // Events
 closeEl.addEventListener('click', function() {
@@ -31,6 +36,7 @@ ipcRenderer.on('global-shortcut', (event, message) => {
   }
 });
 
+
 for (let i=0; i<soundButtons.length; i++) {
   let soundButton = soundButtons[i];
   let soundName = soundButton.attributes['data-sound'].value;
@@ -38,15 +44,35 @@ for (let i=0; i<soundButtons.length; i++) {
   prepareButton(soundButton, soundName);
 }
 
-// function prepareButton(buttonEl, soundName) {
-//   buttonEl.querySelector('span').style.backgroundImage =
-//     'url("img/icons/' + soundName + '.png")';
-//   var audio = new Audio(__dirname + '/wav/' + soundName + '.wav');
-//   buttonEl.addEventListener('click', function () {
-//     audio.currentTime = 0;
-//     audio.play();
-//   });
-// }
+if (process.platform === 'darwin') {
+  trayIcon = new Tray(path.join(__dirname, 'img/tray-iconTemplate.png'));
+} else {
+  trayIcon = new Tray(path.join(__dirname, 'img/tray-icon-alt.png'));
+}
+
+let trayMenuTemplate = [
+  {
+    label: 'Music Player',
+    enabled: false,
+  },
+  {
+    label: 'Setting',
+    click: function () {
+      ipcRenderer.send('open-settings-window');
+    },
+  },
+  {
+    label: 'Quit',
+    click: function () {
+      ipcRenderer.send('close-main-window');
+    },
+  },
+];
+
+trayMenu = Menu.buildFromTemplate(trayMenuTemplate);
+trayIcon.setContextMenu(trayMenu);
+
+// Helpers
 function prepareButton(buttonEl, soundName) {
   buttonEl.querySelector('span').style.backgroundImage =
     'url("img/icons/' + soundName + '.png")';
