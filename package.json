@@ -10,7 +10,7 @@
   "scripts": {
     "start": "electron .",
     "bundle": "webpack --target electron --progress --color --watch --display-error-details",
-    "package": "electron-packager ./ MusicPlayer --platform=win32 --out ~/Desktop/MusicPlayer --version 0.30.2 --overwrite --icon=./app/img/app-icon.ico"
+    "package": "electron-packager ./ MusicPlayer --platform=win32 --out ./build/MusicPlayer --overwrite --icon=./app/public/img/app-icon.ico"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
