@@ -3,12 +3,16 @@
 const electron = require('electron');
 const path = require('path');
 const app = electron.app;
-const configuration = require('./configuration');
+const configuration = require('../configuration');
 // const BrowserWindow = electron.BrowserWindow;
 // const ipcMain = electron.ipcMain;
 // const globalShortcut = electron.globalShortcut;
 
 const { BrowserWindow, ipcMain, globalShortcut } = electron;
+
+// const mainWindowURL = 'file://' + __dirname + '../public/index.html';
+const mainWindowURL = path.join(__dirname, '../public/index.html');
+const settingsWindowURL = path.join(__dirname, '../public/settings.html');
 
 // Init windows
 let mainWindow = null;
@@ -32,7 +36,7 @@ ipcMain.on('open-settings-window', () => {
     width: 200,
   });
 
-  settingsWindow.loadURL('file://' + __dirname + '/app/settings.html');
+  settingsWindow.loadURL(settingsWindowURL);
 
   settingsWindow.on('close', () => {
     settingsWindow = null;
@@ -61,7 +65,8 @@ app.on('ready', function() {
     frame: false,
   });
 
-  mainWindow.loadURL('file://' + __dirname + '/app/index.html');
+  console.log(mainWindowURL);
+  mainWindow.loadURL(mainWindowURL);
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.webContents.send('ping', 'whoooooooh!');

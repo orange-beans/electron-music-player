@@ -1,19 +1,36 @@
 {
   "name": "Beans_GUI",
   "version": "0.1.0",
-  "main": "./entry.js",
+  "main": "./app/main/entry.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orange-beans/electron-music-player.git"
+  },
   "scripts": {
     "start": "electron .",
     "package": "electron-packager ./ MusicPlayer --platform=win32 --out ~/Desktop/MusicPlayer --version 0.30.2 --overwrite --icon=./app/img/app-icon.ico"
   },
   "devDependencies": {
-    "electron-packager": "^8.3.0",
-    "electron-prebuilt": "^1.4.10"
-  },
-  "dependencies": {
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.8",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
-    "babel-register": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "css-loader": "^0.26.0",
+    "electron-packager": "^8.3.0",
+    "electron-prebuilt": "^1.4.10",
+    "eslint": "^3.11.1",
+    "eslint-plugin-react": "^6.7.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3",
+    "webpack-sources": "^0.1.3"
+  },
+  "dependencies": {
     "nconf": "^0.8.4"
   }
 }
