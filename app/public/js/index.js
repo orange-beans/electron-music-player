@@ -1,11 +1,12 @@
 // Add your index.js code in this file
 
 'use strict';
+const platform = 'win32';
 const electron = require('electron');
 const { ipcRenderer, remote } = electron;
 const { Menu, Tray } = remote;
 const path = require('path');
-let resourcePath = __dirname + '/wav/';
+
 // DOM elements
 const soundButtons = document.querySelectorAll('.button-sound');
 const closeEl = document.querySelector('.close');
@@ -48,7 +49,7 @@ if (process.platform === 'darwin') {
   trayIcon = new Tray(path.join(__dirname, 'img/tray-iconTemplate.png'));
 } else {
   trayIcon = new Tray(path.join(__dirname, 'img/tray-icon-alt.png'));
-  resourcePath = path.join(__dirname, 'img/tray-iconTemplate.png');
+  ipcRenderer.send('debug', process.platform);
 }
 
 let trayMenuTemplate = [

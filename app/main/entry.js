@@ -1,2 +1,2 @@
 // install babel hooks in the main process
-require('./main.js');
+require('./build/main.bundle.js');

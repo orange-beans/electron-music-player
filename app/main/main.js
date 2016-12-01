@@ -11,8 +11,12 @@ const configuration = require('../configuration');
 const { BrowserWindow, ipcMain, globalShortcut } = electron;
 
 // const mainWindowURL = 'file://' + __dirname + '../public/index.html';
-const mainWindowURL = path.join(__dirname, '../public/index.html');
-const settingsWindowURL = path.join(__dirname, '../public/settings.html');
+// const mainWindowURL = path.join(__dirname, '../public/index.html');
+// const settingsWindowURL = path.join(__dirname, '../public/settings.html');
+const mainWindowURL = path.join(__dirname, '../../public/index.html');
+const settingsWindowURL = path.join(__dirname, '../../public/settings.html');
+
+console.log(mainWindowURL);
 
 // Init windows
 let mainWindow = null;
