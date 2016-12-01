@@ -1,13 +1,20 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  entry: './app/public/src/entry.js',
+  // entry: './app/public/js/entry.js',
+  // Multiple entry points
+  entry: {
+    index: './app/public/js/index.js',
+    settings: './app/public/js/settings.js',
+  },
   output: {
     path: './app/public/build',
-    filename: 'bundle.js'
+    filename: '[name].bundle.js',
   },
-
+  
+  externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
   cache: false,
   debug: true,
   devtool: 'source-map',
@@ -29,7 +36,7 @@ module.exports = {
 
 
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/,
         query: {

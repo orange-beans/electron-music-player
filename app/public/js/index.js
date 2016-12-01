@@ -5,7 +5,7 @@ const electron = require('electron');
 const { ipcRenderer, remote } = electron;
 const { Menu, Tray } = remote;
 const path = require('path');
-
+let resourcePath = __dirname + '/wav/';
 // DOM elements
 const soundButtons = document.querySelectorAll('.button-sound');
 const closeEl = document.querySelector('.close');
@@ -48,6 +48,7 @@ if (process.platform === 'darwin') {
   trayIcon = new Tray(path.join(__dirname, 'img/tray-iconTemplate.png'));
 } else {
   trayIcon = new Tray(path.join(__dirname, 'img/tray-icon-alt.png'));
+  resourcePath = path.join(__dirname, 'img/tray-iconTemplate.png');
 }
 
 let trayMenuTemplate = [
@@ -82,7 +83,11 @@ function prepareButton(buttonEl, soundName) {
 }
 
 function playSound(soundName) {
-  let audio = new Audio(__dirname + '/wav/' + soundName + '.wav');
+  // FIXME: Strange Path problem....
+  let temppath = path.join('../public/wav/' + soundName + '.wav');
+
+  let audio = new Audio(temppath);
+  ipcRenderer.send('debug', audio.src);
   audio.currentTime = 0;
   audio.play();
 }

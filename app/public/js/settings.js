@@ -4,7 +4,7 @@
 const electron = require('electron');
 const { ipcRenderer } = electron;
 
-const configuration = require('../configuration.js');
+const configuration = require('../../configuration.js');
 //const ipcRenderer = electron.ipcRenderer;
 
 // DOM elements

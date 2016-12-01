@@ -20,6 +20,10 @@ let settingsWindow = null;
 let tray = null;
 
 // IPC messages handling
+ipcMain.on('debug', (event, msg) => {
+  console.log(msg);
+});
+
 ipcMain.on('close-main-window', () => {
   app.quit();
 });

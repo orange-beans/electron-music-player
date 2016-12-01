@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "electron .",
+    "bundle": "webpack --target electron --progress --color --watch --display-error-details",
     "package": "electron-packager ./ MusicPlayer --platform=win32 --out ~/Desktop/MusicPlayer --version 0.30.2 --overwrite --icon=./app/img/app-icon.ico"
   },
   "devDependencies": {
@@ -24,10 +25,12 @@
     "eslint": "^3.11.1",
     "eslint-plugin-react": "^6.7.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
+    "webpack-node-externals": "^1.5.4",
     "webpack-sources": "^0.1.3"
   },
   "dependencies": {
