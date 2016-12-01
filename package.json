@@ -9,8 +9,9 @@
   },
   "scripts": {
     "start": "electron .",
-    "bundle": "webpack --target electron --progress --color --watch --display-error-details",
-    "package": "electron-packager ./ MusicPlayer --platform=win32 --out ./build/MusicPlayer --overwrite --icon=./app/public/img/app-icon.ico"
+    "dev": "webpack --target electron --progress --color --watch --display-error-details",
+    "build": "electron-packager ./ MusicPlayer --platform=win32 --out ./build/MusicPlayer --overwrite --icon=./app/public/img/app-icon.ico",
+    "package": "node build-installer.js"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
@@ -22,6 +23,7 @@
     "css-loader": "^0.26.0",
     "electron-packager": "^8.3.0",
     "electron-prebuilt": "^1.4.10",
+    "electron-winstaller": "^2.4.1",
     "eslint": "^3.11.1",
     "eslint-plugin-react": "^6.7.1",
     "extract-text-webpack-plugin": "^1.0.1",
